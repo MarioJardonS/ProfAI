@@ -1,14 +1,31 @@
-        from elevenlabs.client import ElevenLabs
+from elevenlabs import ElevenLabs
+import elevenlabs
+from elevenlabs import play
         #from dotenv import load_dotenv
-        import os
+import os
 
-        load_dotenv() # Load variables from .env file
-        client = ElevenLabs(api_key=os.getenv("ELEVENLABS_API_KEY"))
+       # load_dotenv() # Load variables from .env file
+client = ElevenLabs(api_key="key")
 
-        audio = client.generate(
-            text="This is an example of text-to-speech using ElevenLabs.",
-            voice="Rachel" # Or a Voice object: voice=Voice(voice_id="VOICE_ID", settings=VoiceSettings(...))
-        )
 
-        from elevenlabs import play
-        play(audio)
+#voice_id = 
+
+class tune:
+	def __init__(self, n):
+		tune.stability = 0.0 + n/5
+		tune.speed = 0.7 + n/10
+		tune.style = 0.0 + n/5	
+	
+
+def read(line, voice):
+	audio = client.text_to_speech.convert( text=line, voice_id = voice.voice_id ,voice_settings = voice.settings)
+	play(audio)	
+
+	
+n = 5
+
+
+tune_voice = tune(n)
+
+voice = elevenlabs.Voice(voice_id = "21m00Tcm4TlvDq8ikWAM" , settings = elevenlabs.VoiceSettings( stability = tune_voice.stability , speed = tune_voice.speed , style = tune_voice.style)) 
+
